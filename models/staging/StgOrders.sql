@@ -1,4 +1,4 @@
-Select  
+Select   {{ dbt_utils.surrogate_key(['o.orderid', 'o.customerid', 'o.productid']) }} as sk_orders, 
         o.ORDERID,
         o.ORDERDATE,
         o.SHIPDATE,
@@ -14,8 +14,7 @@ Select
         c.SEGMENT,
         c.COUNTRY,
         c.STATE
-        
-       
+               
 
 from {{ ref('RawOrders') }} o
     left join  {{ ref('RawProducts') }} p
