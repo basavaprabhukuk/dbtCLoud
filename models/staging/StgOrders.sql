@@ -14,6 +14,8 @@ Select
         c.SEGMENT,
         c.COUNTRY,
         c.STATE
+        
+       
 
 from {{ ref('RawOrders') }} o
     left join  {{ ref('RawProducts') }} p

@@ -1,0 +1,11 @@
+{% set category = ["Furniture","Office","Technology"] %}
+
+Select
+    ORDERID,
+    {% for category in category %}
+    SUM(case when category = '{{category}}' then PROFIT end) as {{category}}_OrderProfit
+    {% if not loop.last %}, {% endif %}
+    {%endfor%}
+    from
+    {{ ref('StgOrders') }}
+    group by 1
