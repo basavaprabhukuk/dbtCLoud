@@ -13,7 +13,7 @@ Select   {{ dbt_utils.surrogate_key(['o.orderid', 'o.customerid', 'o.productid']
         c.CUSTOMERNAME,
         c.SEGMENT,
         c.COUNTRY,
-        c.STATE
+        c.STATE,
         D.DELIVERY_TEAM
                
 
