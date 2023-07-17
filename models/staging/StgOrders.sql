@@ -13,7 +13,8 @@ Select   {{ dbt_utils.surrogate_key(['o.orderid', 'o.customerid', 'o.productid']
         c.CUSTOMERNAME,
         c.SEGMENT,
         c.COUNTRY,
-        c.STATE
+        c.STATE,
+        D.DELIVERY_TEAM
                
 
 from {{ ref('RawOrders') }} o
@@ -21,3 +22,5 @@ from {{ ref('RawOrders') }} o
 on o.PRODUCTID= p.PRODUCTID
     left join   {{ ref('RawCustomer') }} c
 on o.CUSTOMERID = c.CUSTOMERID
+left join {{ ref('DeliveryTeam') }} D
+    on o.SHIPMODE = D.SHIPMODE
